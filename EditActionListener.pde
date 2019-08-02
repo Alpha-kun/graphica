@@ -51,24 +51,33 @@ public class EditActionListener implements ActionListener {
         boolean decision = takeInput("applying euclidean weights will remove all previously added edges, and moving of vertices will result in erroneous weight. Do you wish to proceed?", "Warning");
         if (decision) {
           println("go euclidean");
-          ((WeightedGraph)graph).goEuclidean();
+          ((WeightedGraph)graph).completeEuclidean();
         }
       } else {
         showMessageDialog(null, "Cannot apply euclidean weights to unweighted or directed graph", "Alert", ERROR_MESSAGE);
       }
-
       break;
     case "existing":
       if (graph instanceof WeightedGraph) {
         boolean decision = takeInput("applying euclidean weights will erase all previously entered edge weights, and moving of vertices will result in erroneous weight. Do you wish to proceed?", "Warning");
         if (decision) {
           println("go euclidean");
-          ((WeightedGraph)graph).partialEuclidean();
+          ((WeightedGraph)graph).toEuclidean();
         }
       } else {
         showMessageDialog(null, "Cannot apply euclidean weights to unweighted or directed graph", "Alert", ERROR_MESSAGE);
       }
-
+      break;
+    case "range":
+      if (graph instanceof WeightedGraph) {
+        boolean decision = takeInput("applying euclidean weights will erase all previously entered edge weights, and moving of vertices will result in erroneous weight. Do you wish to proceed?", "Warning");
+        if (decision) {
+          println("go euclidean");
+          ((WeightedGraph)graph).partialEuclidean(takeInput("please enter range", 150, 0, 1920));
+        }
+      } else {
+        showMessageDialog(null, "Cannot apply euclidean weights to unweighted or directed graph", "Alert", ERROR_MESSAGE);
+      }
       break;
     default:
       // no nothing code block

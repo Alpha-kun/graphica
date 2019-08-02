@@ -73,7 +73,8 @@ public class WeightedGraph extends AbstractGraph {
     }
   }
 
-  void goEuclidean() {
+  void completeEuclidean() {
+    E=N*(N-1)/2;
     for (int i=0; i<N; i++) {
       adjList.set(i, new ArrayList<WeightedEdge>());
     }
@@ -90,7 +91,29 @@ public class WeightedGraph extends AbstractGraph {
     }
   }
 
-  void partialEuclidean() {
+  void partialEuclidean(int r) {
+    E=0;
+    for (int i=0; i<N; i++) {
+      adjList.set(i, new ArrayList<WeightedEdge>());
+    }
+    for (int i=0; i<N; i++) {
+      for (int j=i+1; j<N; j++) {
+        Vertex u=vertices.get(i);
+        Vertex v=vertices.get(j);        
+        int w= (int)PVector.sub(u.loc, v.loc).mag();
+        if (w>r) {
+          continue;
+        }
+        E++;
+        WeightedEdge e=new WeightedEdge(u, v, w);
+        edges.add(e);
+        adjList.get(i).add(e);
+        adjList.get(j).add(e);
+      }
+    }
+  }
+
+  void toEuclidean() {
     for (WeightedEdge we : edges) {
       we.weight=(int)PVector.sub(we.u.loc, we.v.loc).mag();
     }

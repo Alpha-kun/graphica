@@ -97,6 +97,7 @@ void setupMenu() {
   menu_edge.add(item_erem);
   menu_euclidean.add(item_existing);
   menu_euclidean.add(item_complete);
+  menu_euclidean.add(item_range);
 
 
   mbar.add(menu_edit);
@@ -117,6 +118,7 @@ void setupMenu() {
   item_complete.setActionCommand("complete");
   item_efont.setActionCommand("efont");
   item_erem.setActionCommand("erem");
+  item_range.setActionCommand("range");
 
 
   item_vcolor.addActionListener(eal);
@@ -128,6 +130,7 @@ void setupMenu() {
   item_erem.addActionListener(eal);
   item_existing.addActionListener(eal);
   item_complete.addActionListener(eal);
+  item_range.addActionListener(eal);
 
   //===============Algorithm Menu===============
   Menu menu_algorithm = new Menu("Algorithm");
