@@ -16,13 +16,13 @@ public class WeightedGraph extends AbstractGraph {
   } 
 
   @Override
-    void addV(int x, int y) {
+    synchronized void addV(int x, int y) {
     vertices.add(new Vertex(x, y, N++));
     adjList.add(new ArrayList<WeightedEdge>());
   }
 
   @Override
-    void addE(Vertex u, Vertex v) {
+    synchronized void addE(Vertex u, Vertex v) {
     int w=1;
     try {
       w= Integer.parseInt(showInputDialog("Please enter edge weight"));
@@ -37,7 +37,7 @@ public class WeightedGraph extends AbstractGraph {
   }
 
   @Override
-    void removeE(int a, int b) {
+    synchronized void removeE(int a, int b) {
 
     WeightedEdge toBeRemoved=null;
 
@@ -60,20 +60,20 @@ public class WeightedGraph extends AbstractGraph {
   }
 
   @Override
-    void setUniversalEdgeColor(color clr) {
+    synchronized void setUniversalEdgeColor(color clr) {
     for (WeightedEdge e : edges) {
       e.setColor(clr);
     }
   }
 
   @Override
-    void setUniversalEdgeThickness(int thk) {
+    synchronized  void setUniversalEdgeThickness(int thk) {
     for (WeightedEdge e : edges) {
       e.setThickness(thk);
     }
   }
 
-  void completeEuclidean() {
+  synchronized void completeEuclidean() {
     E=N*(N-1)/2;
     for (int i=0; i<N; i++) {
       adjList.set(i, new ArrayList<WeightedEdge>());
@@ -91,7 +91,7 @@ public class WeightedGraph extends AbstractGraph {
     }
   }
 
-  void partialEuclidean(int r) {
+  synchronized void partialEuclidean(int r) {
     E=0;
     for (int i=0; i<N; i++) {
       adjList.set(i, new ArrayList<WeightedEdge>());
@@ -113,20 +113,20 @@ public class WeightedGraph extends AbstractGraph {
     }
   }
 
-  void toEuclidean() {
+  synchronized void toEuclidean() {
     for (WeightedEdge we : edges) {
       we.weight=(int)PVector.sub(we.u.loc, we.v.loc).mag();
     }
   }
 
-  void setUniversalEdgeWeightFont(int ft) {
+  synchronized  void setUniversalEdgeWeightFont(int ft) {
     for (WeightedEdge v : edges) {
       v.weight_font=ft;
     }
   }
 
   @Override
-    void display() {
+    synchronized void display() {
     //draw edges
     strokeWeight(5.0);
     strokeCap(ROUND);
@@ -142,7 +142,7 @@ public class WeightedGraph extends AbstractGraph {
   }
 
   @Override
-    void display(int edge_thickness, color edge_color, int edge_alpha, int vertex_size, color vertex_color, int vertex_alpha) {
+    synchronized  void display(int edge_thickness, color edge_color, int edge_alpha, int vertex_size, color vertex_color, int vertex_alpha) {
     //draw edges
     for (WeightedEdge e : edges) {
       e.display(edge_thickness, edge_color, edge_alpha);
@@ -156,7 +156,7 @@ public class WeightedGraph extends AbstractGraph {
   }
 
   @Override
-    void saveGraph(File dest) {
+    synchronized  void saveGraph(File dest) {
     PrintWriter output = createWriter(dest);
     //output basic info
     output.println(N+" "+E);
@@ -173,7 +173,7 @@ public class WeightedGraph extends AbstractGraph {
   }
 
   @Override
-    void openGraph(File src) throws IOException {
+    synchronized void openGraph(File src) throws IOException {
     vertices = new ArrayList<Vertex>();
     edges  =new ArrayList<WeightedEdge>();
     adjList = new ArrayList<ArrayList<WeightedEdge>>();
@@ -200,7 +200,7 @@ public class WeightedGraph extends AbstractGraph {
   }
 
   @Override
-    void importMTX(File src) throws IOException {
+    synchronized void importMTX(File src) throws IOException {
 
     vertices = new ArrayList<Vertex>();
     edges = new ArrayList<WeightedEdge>();
@@ -227,7 +227,7 @@ public class WeightedGraph extends AbstractGraph {
   }
 
   @Override
-    void exportMTX(File dest) {
+    synchronized  void exportMTX(File dest) {
     PrintWriter output = createWriter(dest);
 
     output.println(N+" "+E);

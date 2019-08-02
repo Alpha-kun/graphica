@@ -13,13 +13,13 @@ public class Graph extends AbstractGraph {
   } 
 
   @Override
-    void addV(int x, int y) {
+    synchronized void addV(int x, int y) {
     vertices.add(new Vertex(x, y, N++));
     adjList.add(new ArrayList<Edge>());
   }
 
   @Override
-    void addE(Vertex u, Vertex v) {
+    synchronized void addE(Vertex u, Vertex v) {
     E++;
     Edge e=new Edge(u, v);
     edges.add(e);
@@ -28,7 +28,7 @@ public class Graph extends AbstractGraph {
   }
 
   @Override
-    void removeE(int a, int b) {
+    synchronized void removeE(int a, int b) {
 
     Edge toBeRemoved=null;
 
@@ -51,14 +51,14 @@ public class Graph extends AbstractGraph {
   }
 
   @Override
-    void setUniversalEdgeColor(color clr) {
+    synchronized void setUniversalEdgeColor(color clr) {
     for (Edge e : edges) {
       e.setColor(clr);
     }
   }
 
   @Override
-    void setUniversalEdgeThickness(int thk) {
+    synchronized void setUniversalEdgeThickness(int thk) {
     for (Edge e : edges) {
       e.setThickness(thk);
     }
@@ -95,7 +95,7 @@ public class Graph extends AbstractGraph {
   }
 
   @Override
-    void saveGraph(File dest) {
+    synchronized void saveGraph(File dest) {
     PrintWriter output = createWriter(dest);
     //output basic info
     output.println(N+" "+E);
@@ -112,7 +112,7 @@ public class Graph extends AbstractGraph {
   }
 
   @Override
-    synchronized  void openGraph(File src) throws IOException {
+    synchronized void openGraph(File src) throws IOException {
     //println("executing "+Thread.currentThread().getName());
     vertices = new ArrayList<Vertex>();
     edges = new ArrayList<Edge>();
@@ -170,7 +170,7 @@ public class Graph extends AbstractGraph {
   }
 
   @Override
-    void exportMTX(File dest) {
+    synchronized void exportMTX(File dest) {
     PrintWriter output = createWriter(dest);
     output.println(N+" "+E);
     for (Edge e : edges) {
