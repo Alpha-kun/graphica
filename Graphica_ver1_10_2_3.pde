@@ -12,7 +12,7 @@ AbstractGraph graph;
 void setup() {
   size(1920, 1080);
   background(50);
-  
+
   PImage icon = loadImage("icon_2.png");
   surface.setIcon(icon);
   //noStroke();
@@ -76,7 +76,7 @@ void setupMenu() {
   Menu menu_vertex = new Menu("Vertex");
   Menu menu_edge = new Menu("Edge");
   Menu menu_euclidean = new Menu("Apply euclidean weight");
-  
+
   MenuItem item_vcolor = new MenuItem("Color");
   MenuItem item_vsize = new MenuItem("Size");
   MenuItem item_vfont = new MenuItem("Id font");
@@ -86,6 +86,7 @@ void setupMenu() {
   MenuItem item_erem = new MenuItem("Remove");
   MenuItem item_existing = new MenuItem("to existing edges");
   MenuItem item_complete = new MenuItem("to complete graph");
+  MenuItem item_range = new MenuItem("to vetices within range");  
 
   menu_vertex.add(item_vcolor);
   menu_vertex.add(item_vsize);
@@ -135,7 +136,7 @@ void setupMenu() {
   Menu menu_mst = new Menu("MST");
   Menu menu_sp = new Menu("SP");
   Menu menu_dijkstra = new Menu("Dijkstra");
-  
+
   MenuItem item_dfs = new MenuItem("DFS");
   MenuItem item_bfs = new MenuItem("BFS");
   MenuItem item_kruskal = new MenuItem("Kruskal's");
@@ -175,7 +176,7 @@ void setupMenu() {
   item_cluster.setActionCommand("cluster");
   item_single.setActionCommand("single");
   item_multi.setActionCommand("multi");
-  
+
   item_dfs.addActionListener(aal);
   item_bfs.addActionListener(aal);
   item_kruskal.addActionListener(aal);
@@ -225,7 +226,7 @@ static final int ANIMATION_MODE = 3;
 int animation_speed = 8;
 Player algoPlayer;
 
-void terminateCurrentAlgoPlayer(){
+void terminateCurrentAlgoPlayer() {
   if (algoPlayer!=null) {
     println("terminate previous player");
     algoPlayer.terminate();

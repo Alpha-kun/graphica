@@ -40,7 +40,11 @@ public class AlgoActionListener implements ActionListener {
       }
       break;
     case "single":
-      println("the user wants to dijkstra single source");
+      if (graph instanceof WeightedGraph) {
+        setAlgoPlayer(new DijkSingle((WeightedGraph)graph));
+      } else {
+        showMessageDialog(null, "Can only run MST algorithms on a weighted or undirected graph", "Alert", ERROR_MESSAGE);
+      }
       break;
     case "multi":
       println("the user wants to dijkstra multiple source");
