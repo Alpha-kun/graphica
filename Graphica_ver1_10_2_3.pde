@@ -83,6 +83,7 @@ void setupMenu() {
   MenuItem item_ecolor = new MenuItem("Color");
   MenuItem item_efont = new MenuItem("Weight font");
   MenuItem item_ethickness = new MenuItem("Thickness");
+  MenuItem item_erem = new MenuItem("Remove");
   MenuItem item_existing = new MenuItem("to existing edges");
   MenuItem item_complete = new MenuItem("to complete graph");
 
@@ -92,6 +93,7 @@ void setupMenu() {
   menu_edge.add(item_ecolor);
   menu_edge.add(item_ethickness);
   menu_edge.add(item_efont);
+  menu_edge.add(item_erem);
   menu_euclidean.add(item_existing);
   menu_euclidean.add(item_complete);
 
@@ -113,6 +115,7 @@ void setupMenu() {
   item_existing.setActionCommand("existing");
   item_complete.setActionCommand("complete");
   item_efont.setActionCommand("efont");
+  item_erem.setActionCommand("erem");
 
 
   item_vcolor.addActionListener(eal);
@@ -121,6 +124,7 @@ void setupMenu() {
   item_ecolor.addActionListener(eal);
   item_ethickness.addActionListener(eal);
   item_efont.addActionListener(eal);
+  item_erem.addActionListener(eal);
   item_existing.addActionListener(eal);
   item_complete.addActionListener(eal);
 
@@ -130,20 +134,24 @@ void setupMenu() {
   Menu menu_floodfill = new Menu("Floodfill");
   Menu menu_mst = new Menu("MST");
   Menu menu_sp = new Menu("SP");
-
+  Menu menu_dijkstra = new Menu("Dijkstra");
+  
   MenuItem item_dfs = new MenuItem("DFS");
   MenuItem item_bfs = new MenuItem("BFS");
   MenuItem item_kruskal = new MenuItem("Kruskal's");
   MenuItem item_prim = new MenuItem("Prim's");
   MenuItem item_cluster = new MenuItem("Cluster");
-  MenuItem item_dijkstra = new MenuItem("Dijkstra");
+  MenuItem item_single = new MenuItem("Single-source");
+  MenuItem item_multi = new MenuItem("Multiple-source");
 
   menu_floodfill.add(item_dfs);
   menu_floodfill.add(item_bfs);
   menu_mst.add(item_kruskal);
   menu_mst.add(item_prim);
   menu_mst.add(item_cluster);
-  menu_sp.add(item_dijkstra);
+  menu_dijkstra.add(item_single);
+  menu_dijkstra.add(item_multi);
+  menu_sp.add(menu_dijkstra);
 
   mbar.add(menu_algorithm);
 
@@ -152,7 +160,7 @@ void setupMenu() {
   menu_mst.add(item_kruskal);
   menu_mst.add(item_prim);
   menu_mst.add(item_cluster);
-  menu_sp.add(item_dijkstra);
+  menu_sp.add(menu_dijkstra);
 
   menu_algorithm.add(menu_floodfill);
   menu_algorithm.add(menu_mst);
@@ -165,14 +173,16 @@ void setupMenu() {
   item_kruskal.setActionCommand("kruskal");
   item_prim.setActionCommand("prim");
   item_cluster.setActionCommand("cluster");
-  item_dijkstra.setActionCommand("dijkstra");
-
+  item_single.setActionCommand("single");
+  item_multi.setActionCommand("multi");
+  
   item_dfs.addActionListener(aal);
   item_bfs.addActionListener(aal);
   item_kruskal.addActionListener(aal);
   item_prim.addActionListener(aal);
   item_cluster.addActionListener(aal);
-  item_dijkstra.addActionListener(aal);
+  item_single.addActionListener(aal);
+  item_multi.addActionListener(aal);
 
   //===============Animation Menu===============
   Menu menu_animation = new Menu("Animation");
@@ -353,6 +363,7 @@ int takeInput(String msg, int def, int min, int max) {
   }
   return val;
 }
+
 
 boolean takeInput(String msg, String title) {
   int dialogButton = JOptionPane.YES_NO_OPTION;

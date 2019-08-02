@@ -26,17 +26,40 @@ public class Graph extends AbstractGraph {
     adjList.get(u.id).add(e);
     adjList.get(v.id).add(e);
   }
-  
+
   @Override
-  void setUniversalEdgeColor(color clr){
-    for(Edge e:edges){
+    void removeE(int a, int b) {
+
+    Edge toBeRemoved=null;
+
+    for (int i=0; i<E; i++) {
+      Edge e = edges.get(i);
+      if ((e.u.id==a&&e.v.id==b)||(e.u.id==b&&e.v.id==a)) {
+        toBeRemoved=edges.remove(i);
+        break;
+      }
+    }
+
+    if (toBeRemoved==null) {
+      showMessageDialog(null, String.format("the edge (%d,%d) does not exist!", a, b), "Alert", ERROR_MESSAGE);
+      return;
+    }
+
+    E--;
+    adjList.get(a).remove(toBeRemoved);
+    adjList.get(b).remove(toBeRemoved);
+  }
+
+  @Override
+    void setUniversalEdgeColor(color clr) {
+    for (Edge e : edges) {
       e.setColor(clr);
     }
   }
-  
+
   @Override
-  void setUniversalEdgeThickness(int thk){
-    for(Edge e:edges){
+    void setUniversalEdgeThickness(int thk) {
+    for (Edge e : edges) {
       e.setThickness(thk);
     }
   }

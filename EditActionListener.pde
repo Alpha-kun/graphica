@@ -42,6 +42,10 @@ public class EditActionListener implements ActionListener {
         ((WeightedGraph)graph).setUniversalEdgeWeightFont(takeInput("Please enter edge weight font", 20, 5, 80));
       }
       break;
+    case "erem":
+      String[] pair = showInputDialog("enter the edge you wich to delete as pair of numbers, e.g. 3,4").split(" ");
+      graph.removeE(Integer.parseInt(pair[0]), Integer.parseInt(pair[1]));
+      break;
     case "complete":
       if (graph instanceof WeightedGraph) {
         boolean decision = takeInput("applying euclidean weights will remove all previously added edges, and moving of vertices will result in erroneous weight. Do you wish to proceed?", "Warning");

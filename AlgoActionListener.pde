@@ -39,8 +39,11 @@ public class AlgoActionListener implements ActionListener {
         showMessageDialog(null, "Can only run MST algorithms on a weighted or undirected graph", "Alert", ERROR_MESSAGE);
       }
       break;
-    case "dijkstra":
-      println("the user wants to sp dijkstra");
+    case "single":
+      println("the user wants to dijkstra single source");
+      break;
+    case "multi":
+      println("the user wants to dijkstra multiple source");
       break;
     default:
       // no nothing code block

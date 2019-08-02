@@ -35,21 +35,44 @@ public class WeightedGraph extends AbstractGraph {
     adjList.get(u.id).add(e);
     adjList.get(v.id).add(e);
   }
-  
+
   @Override
-  void setUniversalEdgeColor(color clr){
-    for(WeightedEdge e:edges){
+    void removeE(int a, int b) {
+
+    WeightedEdge toBeRemoved=null;
+
+    for (int i=0; i<E; i++) {
+      WeightedEdge e = edges.get(i);
+      if ((e.u.id==a&&e.v.id==b)||(e.u.id==b&&e.v.id==a)) {
+        toBeRemoved=edges.remove(i);
+        break;
+      }
+    }
+
+    if (toBeRemoved==null) {
+      showMessageDialog(null, String.format("the edge (%d,%d) does not exist!", a, b), "Alert", ERROR_MESSAGE);
+      return;
+    }
+
+    E--;
+    adjList.get(a).remove(toBeRemoved);
+    adjList.get(b).remove(toBeRemoved);
+  }
+
+  @Override
+    void setUniversalEdgeColor(color clr) {
+    for (WeightedEdge e : edges) {
       e.setColor(clr);
     }
   }
-  
+
   @Override
-  void setUniversalEdgeThickness(int thk){
-    for(WeightedEdge e:edges){
+    void setUniversalEdgeThickness(int thk) {
+    for (WeightedEdge e : edges) {
       e.setThickness(thk);
     }
   }
-  
+
   void goEuclidean() {
     for (int i=0; i<N; i++) {
       adjList.set(i, new ArrayList<WeightedEdge>());
@@ -68,8 +91,8 @@ public class WeightedGraph extends AbstractGraph {
   }
 
   void partialEuclidean() {
-    for(WeightedEdge we:edges){
-      we.weight=(int)PVector.sub(we.u.loc,we.v.loc).mag();
+    for (WeightedEdge we : edges) {
+      we.weight=(int)PVector.sub(we.u.loc, we.v.loc).mag();
     }
   }
 
