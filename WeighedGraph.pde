@@ -1,4 +1,3 @@
-import java.util.StringTokenizer;
 import static javax.swing.JOptionPane.*;
 
 public class WeightedGraph extends AbstractGraph {

@@ -1,7 +1,3 @@
-
-//import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JColorChooser;

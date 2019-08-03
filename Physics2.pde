@@ -1,7 +1,5 @@
 
-
 public class Physics2 implements Player {
-
 
   float equilen = 150;
   float tension = 0.25;

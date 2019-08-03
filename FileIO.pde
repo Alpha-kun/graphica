@@ -1,3 +1,4 @@
+
 void writeGraph(File selection) {
   if (selection==null) {
     println("Window was closed or the user hit cancel.");

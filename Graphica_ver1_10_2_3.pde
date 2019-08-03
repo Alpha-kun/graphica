@@ -13,7 +13,7 @@ void setup() {
   size(1920, 1080);
   background(50);
 
-  PImage icon = loadImage("icon_2.png");
+  PImage icon = loadImage("icon/icon_2.png");
   surface.setIcon(icon);
   //noStroke();
 
