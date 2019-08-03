@@ -373,7 +373,7 @@ int takeInput(String msg, int def, int min, int max) {
 String takeMatchingInput(String msg, String reg) {
   String input = showInputDialog(msg);
   while (!Pattern.matches(reg, input)) {
-    println(input+" does not math "+reg);
+    println(input+" does not match "+reg);
     showMessageDialog(null, "This must be fake input, please re-enter", "Alert", ERROR_MESSAGE);
     input = showInputDialog(msg);
     if (input==null) return null;

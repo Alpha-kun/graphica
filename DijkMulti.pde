@@ -22,7 +22,7 @@ public class DijkMulti implements Player {
         }
         catch(NumberFormatException nfe) {
           showMessageDialog(null, src[i]+"is not a vertex, please re-enter", "Alert", ERROR_MESSAGE);
-          input = takeMatchingInput("enter the vertices you want to start with, seperate by comma (e.g. 3,4,5)", "(\\d+,)+\\d");
+          input = takeMatchingInput("enter the vertices you want to start with, seperate by comma (e.g. 3,4,5)", "(\\d+,)+\\d+");
           if (input==null) return;
           src = input.split(",");
           s= new int[src.length];
