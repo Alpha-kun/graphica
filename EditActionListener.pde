@@ -5,7 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JColorChooser;
-
+import java.util.regex.Pattern;
+import java.lang.NumberFormatException;
 
 public class EditActionListener implements ActionListener {
 
@@ -43,8 +44,15 @@ public class EditActionListener implements ActionListener {
       }
       break;
     case "erem":
-      String[] pair = showInputDialog("enter the edge to delete as pair of numbers, seperate by comma (e.g. 3,4)").split(",");
-      graph.removeE(Integer.parseInt(pair[0]), Integer.parseInt(pair[1]));
+      String input = takeMatchingInput("enter the edge to delete as pair of numbers, seperate by comma (e.g. 3,4)", "\\d+,\\d");
+      if (input==null) return;
+      String[] pair = input.split(",");
+      try {
+        graph.removeE(Integer.parseInt(pair[0]), Integer.parseInt(pair[1]));
+      }
+      catch(NumberFormatException nfe) {
+        showMessageDialog(null, "you shall not break my code!!", "Alert", ERROR_MESSAGE);
+      }
       break;
     case "complete":
       if (graph instanceof WeightedGraph) {

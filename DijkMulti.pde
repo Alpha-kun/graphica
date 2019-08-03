@@ -10,12 +10,27 @@ public class DijkMulti implements Player {
     dijk_edge=new ArrayList();
     vertex_covered=new ArrayList();
 
-    String[] pair = showInputDialog("enter the vertices you want to start with, seperate by comma, e.g. 3,4,5").split(",");
-    int[] s= new int[pair.length];
-    for (int i=0; i<pair.length; i++) {
-      s[i]=Integer.parseInt(pair[i]);
+    String input = takeMatchingInput("enter the vertices you want to start with, seperate by comma (e.g. 3,4,5)", "(\\d+,)+\\d+");
+    if (input==null) return;
+    String[] src = input.split(",");
+    int[] s= new int[src.length];
+    while (true) {
+      for (int i=0; i<src.length; i++) {
+        try {
+          s[i]=Integer.parseInt(src[i]);
+          if (s[i]>=grf.N) throw new NumberFormatException();
+        }
+        catch(NumberFormatException nfe) {
+          showMessageDialog(null, src[i]+"is not a vertex, please re-enter", "Alert", ERROR_MESSAGE);
+          input = takeMatchingInput("enter the vertices you want to start with, seperate by comma (e.g. 3,4,5)", "(\\d+,)+\\d");
+          if (input==null) return;
+          src = input.split(",");
+          s= new int[src.length];
+        }
+      }
+      break;
     }
-    
+
     dijkstra(s);
   }
 

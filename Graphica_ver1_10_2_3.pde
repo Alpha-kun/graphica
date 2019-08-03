@@ -187,7 +187,7 @@ void setupMenu() {
   item_cluster.addActionListener(aal);
   item_single.addActionListener(aal);
   item_multi.addActionListener(aal);
-  
+
   //item_multi.setEnabled(false);
 
   //===============Animation Menu===============
@@ -370,6 +370,16 @@ int takeInput(String msg, int def, int min, int max) {
   return val;
 }
 
+String takeMatchingInput(String msg, String reg) {
+  String input = showInputDialog(msg);
+  while (!Pattern.matches(reg, input)) {
+    println(input+" does not math "+reg);
+    showMessageDialog(null, "This must be fake input, please re-enter", "Alert", ERROR_MESSAGE);
+    input = showInputDialog(msg);
+    if (input==null) return null;
+  }
+  return input;
+}
 
 boolean takeInput(String msg, String title) {
   int dialogButton = JOptionPane.YES_NO_OPTION;
