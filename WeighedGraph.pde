@@ -74,6 +74,7 @@ public class WeightedGraph extends AbstractGraph {
   }
 
   synchronized void completeEuclidean() {
+    edges=new ArrayList();
     E=N*(N-1)/2;
     for (int i=0; i<N; i++) {
       adjList.set(i, new ArrayList<WeightedEdge>());
@@ -93,6 +94,7 @@ public class WeightedGraph extends AbstractGraph {
 
   synchronized void partialEuclidean(int r) {
     E=0;
+    edges=new ArrayList();
     for (int i=0; i<N; i++) {
       adjList.set(i, new ArrayList<WeightedEdge>());
     }
@@ -142,7 +144,7 @@ public class WeightedGraph extends AbstractGraph {
   }
 
   @Override
-    synchronized  void display(int edge_thickness, color edge_color, int edge_alpha, int vertex_size, color vertex_color, int vertex_alpha) {
+    synchronized void display(int edge_thickness, color edge_color, int edge_alpha, int vertex_size, color vertex_color, int vertex_alpha) {
     //draw edges
     for (WeightedEdge e : edges) {
       e.display(edge_thickness, edge_color, edge_alpha);

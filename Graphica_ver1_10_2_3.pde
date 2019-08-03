@@ -187,6 +187,8 @@ void setupMenu() {
   item_cluster.addActionListener(aal);
   item_single.addActionListener(aal);
   item_multi.addActionListener(aal);
+  
+  //item_multi.setEnabled(false);
 
   //===============Animation Menu===============
   Menu menu_animation = new Menu("Animation");

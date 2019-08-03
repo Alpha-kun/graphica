@@ -43,7 +43,7 @@ public class EditActionListener implements ActionListener {
       }
       break;
     case "erem":
-      String[] pair = showInputDialog("enter the edge you wich to delete as pair of numbers, e.g. 3,4").split(" ");
+      String[] pair = showInputDialog("enter the edge to delete as pair of numbers, seperate by comma (e.g. 3,4)").split(",");
       graph.removeE(Integer.parseInt(pair[0]), Integer.parseInt(pair[1]));
       break;
     case "complete":
