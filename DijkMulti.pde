@@ -12,7 +12,7 @@ public class DijkMulti implements Player {
     dijk_edge=new ArrayList();
     vertex_covered=new ArrayList();
 
-live_disTo=new int[grf.N];
+    live_disTo=new int[grf.N];
     Arrays.fill(live_disTo, Integer.MAX_VALUE);
     relax=new LinkedList();
     

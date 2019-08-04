@@ -216,6 +216,26 @@ void setupMenu() {
   item_render.addActionListener(anime);
   item_physics.addActionListener(anime);
   item_physics2.addActionListener(anime);
+  
+    //===============Convert Menu===============
+  Menu menu_convert = new Menu("Convert");
+
+  MenuItem item_toPL = new MenuItem("to Graph");
+  MenuItem item_toWG = new MenuItem("to Weighted Graph");
+
+  mbar.add(menu_convert);
+
+  menu_convert.add(item_toPL);
+  menu_convert.add(item_toWG);
+
+  ConvertActionListener cal = new ConvertActionListener();
+
+  item_toPL.setActionCommand("PL");
+  item_toWG.setActionCommand("WG");
+
+  item_toPL.addActionListener(cal);
+  item_toWG.addActionListener(cal);
+  
 
   PSurfaceAWT awtSurface = (PSurfaceAWT)surface;
   PSurfaceAWT.SmoothCanvas smoothCanvas = (PSurfaceAWT.SmoothCanvas)awtSurface.getNative();
