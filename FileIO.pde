@@ -15,6 +15,21 @@ void readGraph(File selection) {
   } else {
     println("User selected " + selection.getAbsolutePath());
     try {
+      BufferedReader reader = createReader(selection);
+      String type = reader.readLine();
+      reader.close();
+      switch(type) {
+      case "PL":
+        graph = new Graph();
+        break;
+      case "WG":
+        graph = new WeightedGraph();
+        break;
+      default:
+        showMessageDialog(null, "the file is damaged!!!", "Alert", ERROR_MESSAGE);
+        return;
+      }
+
       graph.openGraph(selection);
     }
     catch(IOException e) {
