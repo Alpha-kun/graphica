@@ -12,6 +12,10 @@ public class DijkMulti implements Player {
     dijk_edge=new ArrayList();
     vertex_covered=new ArrayList();
 
+live_disTo=new int[grf.N];
+    Arrays.fill(live_disTo, Integer.MAX_VALUE);
+    relax=new LinkedList();
+    
     String input = takeMatchingInput("enter the vertices you want to start with, seperate by comma (e.g. 3,4,5)", "(\\d+,)+\\d+");
     if (input==null) return;
     String[] src = input.split(",");
@@ -73,6 +77,7 @@ public class DijkMulti implements Player {
           path[w] = e;
           pq.add(dis[w] << 10 | w);
           eventQ.add(e);
+          relax.addLast(new int[]{w, dis[w]});
         }
       }
     }
@@ -82,6 +87,10 @@ public class DijkMulti implements Player {
   ArrayList<Object> eventQ;
   ArrayList<WeightedEdge> dijk_edge;
   ArrayList<Integer> vertex_covered;
+  
+  int[] live_disTo;
+  LinkedList<int[]> relax;
+  
   int frm;
 
   @Override
@@ -102,9 +111,25 @@ public class DijkMulti implements Player {
     for (int v : vertex_covered) {
       grf.vertices.get(v).display(20, color(250, 250, 250), 100);
     }
+    
+    for (int i=0; i<grf.N; i++) {
+      if (live_disTo[i]!=Integer.MAX_VALUE) {
+        Vertex v=grf.vertices.get(i);
+        textSize(20);
+        fill(250,0,0,200);
+        String dis=""+live_disTo[i];
+        text(dis, v.loc.x-textWidth(dis)/2, v.loc.y);
+      }
+    }
 
     if (eventQ.get(frm) instanceof WeightedEdge) {
       ((WeightedEdge)eventQ.get(frm)).display(6, color(250, 0, 0), 150);
+      int[] update =relax.removeFirst();
+      live_disTo[update[0]]=update[1];
+      Vertex v=grf.vertices.get(update[0]);
+      v.display(20, color(250, 250, 0), 150);
+      textSize(30);
+      text(""+update[1], v.loc.x, v.loc.y);
     } else {
       int vtx = (Integer)eventQ.get(frm);
       grf.vertices.get(vtx).display(30, color(250, 0, 0), 150);

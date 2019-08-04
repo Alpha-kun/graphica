@@ -9,6 +9,10 @@ public class DijkSingle implements Player {
     eventQ=new ArrayList();
     dijk_edge=new ArrayList();
     vertex_covered=new ArrayList();
+
+    live_disTo=new int[grf.N];
+    Arrays.fill(live_disTo, Integer.MAX_VALUE);
+    relax=new LinkedList();
     
     int s = takeInput("Please enter the vertex to start with", 0, 0, graph.N-1);
     dijkstra(s);
@@ -49,6 +53,7 @@ public class DijkSingle implements Player {
           path[w] = e;
           pq.add(dis[w] << 10 | w);
           eventQ.add(e);
+          relax.addLast(new int[]{w, dis[w]});
         }
       }
     }
@@ -58,6 +63,10 @@ public class DijkSingle implements Player {
   ArrayList<Object> eventQ;
   ArrayList<WeightedEdge> dijk_edge;
   ArrayList<Integer> vertex_covered;
+
+  int[] live_disTo;
+  LinkedList<int[]> relax;
+
   int frm;
 
   @Override
@@ -79,11 +88,26 @@ public class DijkSingle implements Player {
       grf.vertices.get(v).display(20, color(250, 250, 250), 100);
     }
 
+    for (int i=0; i<grf.N; i++) {
+      if (live_disTo[i]!=Integer.MAX_VALUE) {
+        Vertex v=grf.vertices.get(i);
+        textSize(20);
+        fill(250,0,0,200);
+        String dis=""+live_disTo[i];
+        text(dis, v.loc.x-textWidth(dis)/2, v.loc.y);
+      }
+    }
     if (eventQ.get(frm) instanceof WeightedEdge) {
-      ((WeightedEdge)eventQ.get(frm)).display(6, color(250, 0, 0), 150);
+      ((WeightedEdge)eventQ.get(frm)).display(6, color(0, 250, 0), 150);
+      int[] update =relax.removeFirst();
+      live_disTo[update[0]]=update[1];
+      Vertex v=grf.vertices.get(update[0]);
+      v.display(20, color(250, 250, 0), 150);
+      textSize(30);
+      text(""+update[1], v.loc.x, v.loc.y);
     } else {
       int vtx = (Integer)eventQ.get(frm);
-      grf.vertices.get(vtx).display(30, color(250, 0, 0), 150);
+      grf.vertices.get(vtx).display(40, color(250, 0, 0), 150);
       vertex_covered.add(vtx);
       if (path[vtx]!=null) {
         dijk_edge.add(path[vtx]);
