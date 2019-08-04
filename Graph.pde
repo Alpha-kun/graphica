@@ -98,6 +98,7 @@ public class Graph extends AbstractGraph {
     synchronized void saveGraph(File dest) {
     PrintWriter output = createWriter(dest);
     //output basic info
+    output.println("PL");
     output.println(N+" "+E);
     //output gemoetry info
     for (Vertex v : vertices) {
@@ -119,6 +120,7 @@ public class Graph extends AbstractGraph {
     adjList = new ArrayList<ArrayList<Edge>>();
     //sleep(500);
     BufferedReader reader = createReader(src);
+    reader.readLine();//discharge file identifier
     StringTokenizer st = new StringTokenizer(reader.readLine());
     N=Integer.parseInt(st.nextToken());
     E=Integer.parseInt(st.nextToken());
