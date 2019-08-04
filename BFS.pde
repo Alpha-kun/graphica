@@ -68,7 +68,7 @@ public class BFS implements Player {
       g.vertices.get(v).display(20, color(250, 250, 250), 100);
     }
 
-    edge_trace.get(frm).display(6, color(250, 0, 0), 255);
+    edge_trace.get(frm).display(6, color(250, 0, 0), 150);
 
     frm++;
     sleep(550-50*animation_speed);

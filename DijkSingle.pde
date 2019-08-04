@@ -80,10 +80,10 @@ public class DijkSingle implements Player {
     }
 
     if (eventQ.get(frm) instanceof WeightedEdge) {
-      ((WeightedEdge)eventQ.get(frm)).display(6, color(250, 0, 0), 255);
+      ((WeightedEdge)eventQ.get(frm)).display(6, color(250, 0, 0), 150);
     } else {
       int vtx = (Integer)eventQ.get(frm);
-      grf.vertices.get(vtx).display(30, color(250, 0, 0), 255);
+      grf.vertices.get(vtx).display(30, color(250, 0, 0), 150);
       vertex_covered.add(vtx);
       if (path[vtx]!=null) {
         dijk_edge.add(path[vtx]);

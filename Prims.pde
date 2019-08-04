@@ -68,7 +68,7 @@ public class Prims implements Player {
       mst_edge.get(i).v.display(20, color(250, 250, 250), 100);
     }
 
-    mst_edge.get(frm).display(6, color(250, 0, 0), 255);
+    mst_edge.get(frm).display(6, color(250, 0, 0), 150);
 
     frm++;
     sleep(550-50*animation_speed);
