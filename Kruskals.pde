@@ -3,7 +3,7 @@ public class Kruskals implements Player {
 
   public Kruskals(WeightedGraph wg) {
     sorted_edges=new ArrayList(wg.edges);
-    grf=wg;
+    graff=wg;
 
     Comparator<WeightedEdge> cpt = new Comparator<WeightedEdge>() {
       @Override
@@ -19,19 +19,19 @@ public class Kruskals implements Player {
     kruskal();
   }
 
-  WeightedGraph grf;
+  WeightedGraph graff;
 
   ArrayList<WeightedEdge> sorted_edges;
 
   void kruskal() {
-    HeuristicUF uf = new HeuristicUF(grf.N);
+    HeuristicUF uf = new HeuristicUF(graff.N);
     for (int i=0; i<sorted_edges.size(); i++) {
       WeightedEdge we = sorted_edges.get(i);
       if (!uf.connected(we.u.id, we.v.id)) {
         mst_edge.add(we);
         uf.union(we.u.id, we.v.id);
       }
-      if (mst_edge.size()==grf.N-1) {
+      if (mst_edge.size()==graff.N-1) {
         break;
       }
     }
@@ -49,7 +49,7 @@ public class Kruskals implements Player {
     void drawNextFrame() {
     background(40);
     println("drawing frame: "+frm);
-    graph.display(3, color(200, 200, 200), 30, 10, color(250, 250, 250), 50);
+    graff.display(3, color(200, 200, 200), 30, 10, color(250, 250, 250), 50);
 
     for (int i=0; i<frm; i++) {
       mst_edge.get(i).display(4, color(200, 200, 200), 200);

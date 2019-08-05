@@ -3,8 +3,8 @@ public class Prims implements Player {
 
   public Prims(WeightedGraph wg) {
 
-    grf=wg;
-    marked=new boolean[grf.N];
+    graff=wg;
+    marked=new boolean[graff.N];
 
     mst_edge=new ArrayList();
 
@@ -24,13 +24,13 @@ public class Prims implements Player {
 
 
   boolean[] marked;
-  WeightedGraph grf;
+  WeightedGraph graff;
   PriorityQueue<WeightedEdge> q;
 
 
   void visit(int s) {
     marked[s]=true;
-    for (WeightedEdge we : grf.adjList.get(s)) {
+    for (WeightedEdge we : graff.adjList.get(s)) {
       if (!marked[we.other(s)]) {
         q.add(we);
       }
@@ -60,7 +60,7 @@ public class Prims implements Player {
     void drawNextFrame() {
     background(40);
     println("drawing frame: "+frm);
-    graph.display(3, color(200, 200, 200), 30, 10, color(250, 250, 250), 50);
+    graff.display(3, color(200, 200, 200), 30, 10, color(250, 250, 250), 50);
 
     for (int i=0; i<frm; i++) {
       mst_edge.get(i).display(4, color(200, 200, 200), 200);

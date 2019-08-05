@@ -4,15 +4,15 @@ import java.util.Arrays;
 public class DijkMulti implements Player {
 
   public DijkMulti(WeightedGraph graph) {
-    grf=graph;
-    spTo = new int[grf.N];
-    path = new WeightedEdge[grf.N];
+    graff=graph;
+    spTo = new int[graff.N];
+    path = new WeightedEdge[graff.N];
 
     eventQ=new ArrayList();
     dijk_edge=new ArrayList();
     vertex_covered=new ArrayList();
 
-    live_disTo=new int[grf.N];
+    live_disTo=new int[graff.N];
     Arrays.fill(live_disTo, Integer.MAX_VALUE);
     relax=new LinkedList();
     
@@ -24,7 +24,7 @@ public class DijkMulti implements Player {
       for (int i=0; i<src.length; i++) {
         try {
           s[i]=Integer.parseInt(src[i]);
-          if (s[i]>=grf.N) throw new NumberFormatException();
+          if (s[i]>=graff.N) throw new NumberFormatException();
         }
         catch(NumberFormatException nfe) {
           showMessageDialog(null, src[i]+"is not a vertex, please re-enter", "Alert", ERROR_MESSAGE);
@@ -40,14 +40,14 @@ public class DijkMulti implements Player {
     dijkstra(s);
   }
 
-  WeightedGraph grf;
+  WeightedGraph graff;
 
   // after running, the answer will be stored in these two arrays
   int[] spTo;
   WeightedEdge[] path;
 
   void dijkstra(int[] s) {
-    int[] dis = new int[grf.N];
+    int[] dis = new int[graff.N];
 
     Arrays.fill(dis, Integer.MAX_VALUE);
 
@@ -70,7 +70,7 @@ public class DijkMulti implements Player {
         continue;
       }
       eventQ.add(v);
-      for (WeightedEdge e : grf.adjList.get(v)) {
+      for (WeightedEdge e : graff.adjList.get(v)) {
         int w = e.other(v);
         if (dis[v] + e.weight < dis[w]) {
           dis[w] = dis[v] + e.weight;
@@ -102,19 +102,19 @@ public class DijkMulti implements Player {
     void drawNextFrame() {
     background(40);
     println("drawing frame: "+frm);
-    graph.display(3, color(200, 200, 200), 30, 10, color(250, 250, 250), 50);
+    graff.display(3, color(200, 200, 200), 30, 10, color(250, 250, 250), 50);
 
     for (WeightedEdge we : dijk_edge) {
       we.display(4, color(200, 200, 200), 200);
     }
 
     for (int v : vertex_covered) {
-      grf.vertices.get(v).display(20, color(250, 250, 250), 100);
+      graff.vertices.get(v).display(20, color(250, 250, 250), 100);
     }
     
-    for (int i=0; i<grf.N; i++) {
+    for (int i=0; i<graff.N; i++) {
       if (live_disTo[i]!=Integer.MAX_VALUE) {
-        Vertex v=grf.vertices.get(i);
+        Vertex v=graff.vertices.get(i);
         textSize(20);
         fill(250,0,0,200);
         String dis=""+live_disTo[i];
@@ -126,13 +126,13 @@ public class DijkMulti implements Player {
       ((WeightedEdge)eventQ.get(frm)).display(6, color(250, 0, 0), 150);
       int[] update =relax.removeFirst();
       live_disTo[update[0]]=update[1];
-      Vertex v=grf.vertices.get(update[0]);
+      Vertex v=graff.vertices.get(update[0]);
       v.display(20, color(250, 250, 0), 150);
       textSize(30);
       text(""+update[1], v.loc.x, v.loc.y);
     } else {
       int vtx = (Integer)eventQ.get(frm);
-      grf.vertices.get(vtx).display(30, color(250, 0, 0), 150);
+      graff.vertices.get(vtx).display(30, color(250, 0, 0), 150);
       vertex_covered.add(vtx);
       if (path[vtx]!=null) {
         dijk_edge.add(path[vtx]);
