@@ -20,10 +20,10 @@ void readGraph(File selection) {
       reader.close();
       switch(type) {
       case "PL":
-        graph = new Graph();
+        setupGraph(new Graph());
         break;
       case "WG":
-        graph = new WeightedGraph();
+        setupGraph(new WeightedGraph());
         break;
       default:
         showMessageDialog(null, "the file is damaged!!!", "Alert", ERROR_MESSAGE);

@@ -7,10 +7,10 @@ public class FileActionListener implements ActionListener {
 
     switch(e.getActionCommand()) {
     case "graph":
-      graph=new Graph();
+      setupGraph(new Graph());
       break;
     case "wgraph":
-      graph=new WeightedGraph();
+      setupGraph(new WeightedGraph());
       break;
     case "save":
       saveGraph();

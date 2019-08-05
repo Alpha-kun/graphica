@@ -181,4 +181,14 @@ public class Graph extends AbstractGraph {
     output.flush();
     output.close();
   }
+
+  @Override
+    protected void finalize() {
+    println("a graph is dead");
+  }
+
+  @Override
+    void setUnusableMenu(boolean b) {
+    setupPL(b);
+  }
 }

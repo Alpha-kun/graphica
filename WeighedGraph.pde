@@ -242,4 +242,14 @@ public class WeightedGraph extends AbstractGraph {
     output.flush();
     output.close();
   }
+
+  @Override
+    protected void finalize() {
+    println("a weighted graph is dead");
+  }
+
+  @Override
+    void setUnusableMenu(boolean b) {
+    setupWG(b);
+  }
 }
