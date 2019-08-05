@@ -25,6 +25,9 @@ void readGraph(File selection) {
       case "WG":
         setupGraph(new WeightedGraph());
         break;
+      case "DG":
+        setupGraph(new DiGraph());
+        break;
       default:
         showMessageDialog(null, "the file is damaged!!!", "Alert", ERROR_MESSAGE);
         return;

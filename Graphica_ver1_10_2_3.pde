@@ -155,6 +155,17 @@ void drawArrow(int cx, int cy, int len, float angle) {
   popMatrix();
 }
 
+void drawArrow(PVector s, PVector t) {
+  pushMatrix();
+  translate(s.x, s.y);
+  PVector arr = PVector.sub(t, s);
+  rotate(arr.heading());
+  line(0, 0, arr.mag(), 0);
+  line(arr.mag(), 0, arr.mag() - 16, -16);
+  line(arr.mag(), 0, arr.mag() - 16, 16);
+  popMatrix();
+}
+
 void sleep(long milli) {
   try {
     Thread.sleep(milli);

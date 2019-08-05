@@ -13,9 +13,11 @@ public class AnimationActionListener implements ActionListener {
       println("the user wants to render image");  
       break;
     case "physics":
+      terminateCurrentAlgoPlayer();
       setAlgoPlayer(new Physics((Graph)graph));  
       break;
     case "physics2":
+      terminateCurrentAlgoPlayer();
       setAlgoPlayer(new Physics2((Graph)graph));  
       break;
     default:

@@ -5,6 +5,7 @@ Menu menu_new = new Menu("New");
 
 MenuItem item_graph = new MenuItem("Graph");
 MenuItem item_wgraph = new MenuItem("Weighted Graph");
+MenuItem item_digraph = new MenuItem("Directed Graph");
 MenuItem item_open = new MenuItem("Open");
 MenuItem item_save = new MenuItem("Save");
 MenuItem item_import = new MenuItem("Import");
@@ -38,6 +39,8 @@ Menu menu_dijkstra = new Menu("Dijkstra");
 
 MenuItem item_dfs = new MenuItem("DFS");
 MenuItem item_bfs = new MenuItem("BFS");
+MenuItem item_ssc = new MenuItem("SSC");
+
 MenuItem item_kruskal = new MenuItem("Kruskal's");
 MenuItem item_prim = new MenuItem("Prim's");
 MenuItem item_cluster = new MenuItem("Cluster");
@@ -67,6 +70,7 @@ void setupMenu() {
 
   menu_new.add(item_graph);
   menu_new.add(item_wgraph);
+  menu_new.add(item_digraph);
   menu_export.add(item_image);
   menu_export.add(item_mtx);
 
@@ -82,6 +86,7 @@ void setupMenu() {
 
   item_graph.setActionCommand("graph");
   item_wgraph.setActionCommand("wgraph");
+  item_digraph.setActionCommand("digraph");
   item_open.setActionCommand("open");
   item_save.setActionCommand("save");
   item_import.setActionCommand("import");
@@ -90,6 +95,7 @@ void setupMenu() {
 
   item_graph.addActionListener(fal);
   item_wgraph.addActionListener(fal);
+  item_digraph.addActionListener(fal);
   item_open.addActionListener(fal);
   item_save.addActionListener(fal);
   item_import.addActionListener(fal);
@@ -165,6 +171,7 @@ void setupMenu() {
   menu_sp.add(menu_dijkstra);
 
   menu_algorithm.add(menu_floodfill);
+  menu_algorithm.add(item_ssc);
   menu_algorithm.add(menu_mst);
   menu_algorithm.add(menu_sp);
 
@@ -172,6 +179,7 @@ void setupMenu() {
 
   item_dfs.setActionCommand("dfs");
   item_bfs.setActionCommand("bfs");
+  item_bfs.setActionCommand("ssc");
   item_kruskal.setActionCommand("kruskal");
   item_prim.setActionCommand("prim");
   item_cluster.setActionCommand("cluster");
@@ -180,6 +188,7 @@ void setupMenu() {
 
   item_dfs.addActionListener(aal);
   item_bfs.addActionListener(aal);
+  item_ssc.addActionListener(aal);
   item_kruskal.addActionListener(aal);
   item_prim.addActionListener(aal);
   item_cluster.addActionListener(aal);
@@ -231,14 +240,24 @@ void setupMenu() {
   smoothCanvas.getFrame().setMenuBar(mbar);
 }
 
-void setupPL(boolean b){
+void setupPL(boolean b) {
   item_efont.setEnabled(b);
+  item_ssc.setEnabled(b);
   menu_euclidean.setEnabled(b);
   menu_mst.setEnabled(b);
   menu_sp.setEnabled(b);
   item_toPL.setEnabled(b);
 }
 
-void setupWG(boolean b){
+void setupWG(boolean b) {
   item_toWG.setEnabled(b);
+  item_ssc.setEnabled(b);
+}
+
+void setupDG(boolean b) {
+  item_efont.setEnabled(b);
+  menu_euclidean.setEnabled(b);
+  menu_mst.setEnabled(b);
+  menu_sp.setEnabled(b);
+  item_toPL.setEnabled(b);
 }

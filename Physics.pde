@@ -40,7 +40,7 @@ public class Physics implements Player {
 
   @Override
     void drawNextFrame() {
-    equilen=cp5.getController("equilibrium edge length").getValue();
+    equilen=cp5.getController("equilibrium edge length").getValue();//<==============================
     tension=cp5.getController("edge tension strength").getValue();
     drag=cp5.getController("drag factor").getValue();
     repstr=cp5.getController("repulsion strength").getValue();

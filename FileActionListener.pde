@@ -12,6 +12,9 @@ public class FileActionListener implements ActionListener {
     case "wgraph":
       setupGraph(new WeightedGraph());
       break;
+    case "digraph":
+      setupGraph(new DiGraph());
+      break;
     case "save":
       saveGraph();
       break;
@@ -49,7 +52,7 @@ public class FileActionListener implements ActionListener {
   void importMTX() {
     selectInput("Select a file to process:", "readMTX", new File("default.mtx"));
   }
-  
+
   void exportMTX() {
     selectInput("Select a file to process:", "writeMTX", new File("default.mtx"));
   }
