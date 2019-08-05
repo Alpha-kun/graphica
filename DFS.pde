@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Stack;
+import java.util.LinkedList;
 
 public class DFS implements Player {
 
@@ -90,7 +91,7 @@ public class DFS implements Player {
     }
 
     for (Edge e : edge_stack) {
-      e.display(6, color(250, 0, 0), 255);
+      e.display(6, color(250, 0, 0), 150);
     }
 
     frm++;

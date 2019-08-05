@@ -1,5 +1,4 @@
 
-
 public class HeuristicUF {
 
   int[] p;

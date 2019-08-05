@@ -1,7 +1,5 @@
 
 public class Edge extends AbstractEdge{
-
-  
   
   public Edge(Vertex a,Vertex b){
     super(a,b);

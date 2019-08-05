@@ -1,8 +1,4 @@
 
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class FileActionListener implements ActionListener {
 
   @Override
@@ -11,10 +7,10 @@ public class FileActionListener implements ActionListener {
 
     switch(e.getActionCommand()) {
     case "graph":
-      graph=new Graph();
+      setupGraph(new Graph());
       break;
     case "wgraph":
-      graph=new WeightedGraph();
+      setupGraph(new WeightedGraph());
       break;
     case "save":
       saveGraph();

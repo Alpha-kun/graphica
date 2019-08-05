@@ -13,30 +13,53 @@ public class Graph extends AbstractGraph {
   } 
 
   @Override
-    void addV(int x, int y) {
+    synchronized void addV(int x, int y) {
     vertices.add(new Vertex(x, y, N++));
     adjList.add(new ArrayList<Edge>());
   }
 
   @Override
-    void addE(Vertex u, Vertex v) {
+    synchronized void addE(Vertex u, Vertex v) {
     E++;
     Edge e=new Edge(u, v);
     edges.add(e);
     adjList.get(u.id).add(e);
     adjList.get(v.id).add(e);
   }
-  
+
   @Override
-  void setUniversalEdgeColor(color clr){
-    for(Edge e:edges){
+    synchronized void removeE(int a, int b) {
+
+    Edge toBeRemoved=null;
+
+    for (int i=0; i<E; i++) {
+      Edge e = edges.get(i);
+      if ((e.u.id==a&&e.v.id==b)||(e.u.id==b&&e.v.id==a)) {
+        toBeRemoved=edges.remove(i);
+        break;
+      }
+    }
+
+    if (toBeRemoved==null) {
+      showMessageDialog(null, String.format("the edge (%d,%d) does not exist!", a, b), "Alert", ERROR_MESSAGE);
+      return;
+    }
+
+    E--;
+    adjList.get(a).remove(toBeRemoved);
+    adjList.get(b).remove(toBeRemoved);
+  }
+
+  @Override
+    synchronized void setUniversalEdgeColor(color clr) {
+    for (Edge e : edges) {
       e.setColor(clr);
     }
   }
-  
+
   @Override
-  void setUniversalEdgeThickness(int thk){
-    for(Edge e:edges){
+    synchronized void setUniversalEdgeThickness(int thk) {
+    for (Edge e : edges) {
       e.setThickness(thk);
     }
   }
@@ -72,9 +95,10 @@ public class Graph extends AbstractGraph {
   }
 
   @Override
-    void saveGraph(File dest) {
+    synchronized void saveGraph(File dest) {
     PrintWriter output = createWriter(dest);
     //output basic info
+    output.println("PL");
     output.println(N+" "+E);
     //output gemoetry info
     for (Vertex v : vertices) {
@@ -89,13 +113,14 @@ public class Graph extends AbstractGraph {
   }
 
   @Override
-    synchronized  void openGraph(File src) throws IOException {
+    synchronized void openGraph(File src) throws IOException {
     //println("executing "+Thread.currentThread().getName());
     vertices = new ArrayList<Vertex>();
     edges = new ArrayList<Edge>();
     adjList = new ArrayList<ArrayList<Edge>>();
     //sleep(500);
     BufferedReader reader = createReader(src);
+    reader.readLine();//discharge file identifier
     StringTokenizer st = new StringTokenizer(reader.readLine());
     N=Integer.parseInt(st.nextToken());
     E=Integer.parseInt(st.nextToken());
@@ -147,7 +172,7 @@ public class Graph extends AbstractGraph {
   }
 
   @Override
-    void exportMTX(File dest) {
+    synchronized void exportMTX(File dest) {
     PrintWriter output = createWriter(dest);
     output.println(N+" "+E);
     for (Edge e : edges) {
@@ -155,5 +180,15 @@ public class Graph extends AbstractGraph {
     }
     output.flush();
     output.close();
+  }
+
+  @Override
+    protected void finalize() {
+    println("a graph is dead");
+  }
+
+  @Override
+    void setUnusableMenu(boolean b) {
+    setupPL(b);
   }
 }

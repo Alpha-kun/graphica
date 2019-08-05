@@ -1,3 +1,4 @@
+
 void writeGraph(File selection) {
   if (selection==null) {
     println("Window was closed or the user hit cancel.");
@@ -14,6 +15,21 @@ void readGraph(File selection) {
   } else {
     println("User selected " + selection.getAbsolutePath());
     try {
+      BufferedReader reader = createReader(selection);
+      String type = reader.readLine();
+      reader.close();
+      switch(type) {
+      case "PL":
+        setupGraph(new Graph());
+        break;
+      case "WG":
+        setupGraph(new WeightedGraph());
+        break;
+      default:
+        showMessageDialog(null, "the file is damaged!!!", "Alert", ERROR_MESSAGE);
+        return;
+      }
+
       graph.openGraph(selection);
     }
     catch(IOException e) {

@@ -41,6 +41,8 @@ public abstract class AbstractGraph {
   abstract void addV(int x, int y);
 
   abstract void addE(Vertex u, Vertex v);
+  
+  abstract void removeE(int a, int b);
 
   abstract void saveGraph(File dest);
 
@@ -53,4 +55,6 @@ public abstract class AbstractGraph {
   abstract void display();
 
   abstract void display(int edge_thickness, color edge_color, int edge_alpha, int vertex_size, color vertex_color, int vertex_alpha);
+  
+  abstract void setUnusableMenu(boolean b);
 }

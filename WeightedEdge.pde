@@ -1,3 +1,4 @@
+
 public class WeightedEdge extends AbstractEdge {
 
   int weight;
