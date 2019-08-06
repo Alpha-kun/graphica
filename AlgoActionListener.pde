@@ -13,7 +13,11 @@ public class AlgoActionListener implements ActionListener {
       setAlgoPlayer(new DFS((Graph)graph));
       break;
     case "bfs":
+      println("BFS");
       setAlgoPlayer(new BFS((Graph)graph));
+      break;
+    case "scc":
+      setAlgoPlayer(new SCC((DiGraph)graph));
       break;
     case "kruskal":
       if (graph instanceof WeightedGraph) {

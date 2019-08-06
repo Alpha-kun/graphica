@@ -18,7 +18,7 @@ public class Prims implements Player {
     
     q = new PriorityQueue(cpt);
     
-    prim();
+    prim(takeInput("please select source vertex",0,0,grf.N));
     
   }
 
@@ -37,8 +37,8 @@ public class Prims implements Player {
     }
   }
 
-  void prim() {
-    visit(0);
+  void prim(int s) {
+    visit(s);
     while (!q.isEmpty()) {
       WeightedEdge we = q.poll();
       if (marked[we.u.id]&&marked[we.v.id]) continue;

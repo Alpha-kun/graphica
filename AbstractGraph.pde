@@ -34,6 +34,8 @@ public abstract class AbstractGraph {
     }
   }
   
+  abstract void setSizeByDegree();
+  
   abstract void setUniversalEdgeColor(color clr);
   
   abstract void setUniversalEdgeThickness(int thk);

@@ -58,6 +58,24 @@ public class Graph extends AbstractGraph {
   }
 
   @Override
+    synchronized void setSizeByDegree() {
+    int min=Integer.MAX_VALUE;
+    int max=-1;
+    for (int i=0; i<N; i++) {
+      min=min(min, adjList.get(i).size());
+      max=max(max, adjList.get(i).size());
+    }
+    println(String.format("%d,%d",min,max));
+    if (min==max)return;
+    for (int i=0; i<N; i++) {
+      Vertex v = vertices.get(i);
+      float factor = 1.0*(adjList.get(i).size()-min)/(max-min);
+      println(factor);
+      v.size=(int)(10+40.0*factor);
+    }
+  }
+
+  @Override
     synchronized void setUniversalEdgeThickness(int thk) {
     for (Edge e : edges) {
       e.setThickness(thk);

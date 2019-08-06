@@ -20,6 +20,7 @@ Menu menu_euclidean = new Menu("Apply euclidean weight");
 
 MenuItem item_vcolor = new MenuItem("Color");
 MenuItem item_vsize = new MenuItem("Size");
+MenuItem item_vsizebd= new MenuItem("Size by edgree");
 MenuItem item_vfont = new MenuItem("Id font");
 MenuItem item_ecolor = new MenuItem("Color");
 MenuItem item_efont = new MenuItem("Weight font");
@@ -107,6 +108,7 @@ void setupMenu() {
 
   menu_vertex.add(item_vcolor);
   menu_vertex.add(item_vsize);
+  menu_vertex.add(item_vsizebd);
   menu_vertex.add(item_vfont);
   menu_edge.add(item_ecolor);
   menu_edge.add(item_ethickness);
@@ -128,6 +130,7 @@ void setupMenu() {
 
   item_vcolor.setActionCommand("vcolor");
   item_vsize.setActionCommand("vsize");
+  item_vsizebd.setActionCommand("vsizebd");
   item_vfont.setActionCommand("vfont");
   item_ecolor.setActionCommand("ecolor");
   item_ethickness.setActionCommand("ethickness");
@@ -140,6 +143,7 @@ void setupMenu() {
 
   item_vcolor.addActionListener(eal);
   item_vsize.addActionListener(eal);
+  item_vsizebd.addActionListener(eal);
   item_vfont.addActionListener(eal);
   item_ecolor.addActionListener(eal);
   item_ethickness.addActionListener(eal);
@@ -179,7 +183,7 @@ void setupMenu() {
 
   item_dfs.setActionCommand("dfs");
   item_bfs.setActionCommand("bfs");
-  item_bfs.setActionCommand("ssc");
+  item_ssc.setActionCommand("ssc");
   item_kruskal.setActionCommand("kruskal");
   item_prim.setActionCommand("prim");
   item_cluster.setActionCommand("cluster");

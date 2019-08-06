@@ -21,6 +21,9 @@ public class EditActionListener implements ActionListener {
     case "vsize":
       graph.setUniversalVertexSize(takeInput("Please enter vertex size", 20, 5, 40));
       break;
+    case "vsizebd":
+      graph.setSizeByDegree();
+      break;
     case "vfont":
       graph.setUniversalVertexIdFont(takeInput("Please enter vertex id font", 20, 5, 60));
       break;
