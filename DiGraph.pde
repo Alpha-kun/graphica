@@ -32,7 +32,7 @@ public class DiGraph extends AbstractGraph {
 
     for (int i=0; i<E; i++) {
       DiEdge e = edges.get(i);
-      if ((e.u.id==a&&e.v.id==b)||(e.u.id==b&&e.v.id==a)) {
+      if (e.u.id==a&&e.v.id==b) {
         toBeRemoved=edges.remove(i);
         break;
       }
@@ -45,7 +45,6 @@ public class DiGraph extends AbstractGraph {
 
     E--;
     adjList.get(a).remove(toBeRemoved);
-    adjList.get(b).remove(toBeRemoved);
   }
 
   @Override

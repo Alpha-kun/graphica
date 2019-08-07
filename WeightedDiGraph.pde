@@ -30,7 +30,6 @@ public class WeightedDiGraph extends AbstractGraph {
     WeightedDiEdge e=new WeightedDiEdge(u, v, w);
     edges.add(e);
     adjList.get(u.id).add(e);
-    adjList.get(v.id).add(e);
   }
 
   @Override
@@ -40,7 +39,7 @@ public class WeightedDiGraph extends AbstractGraph {
 
     for (int i=0; i<E; i++) {
       WeightedDiEdge e = edges.get(i);
-      if ((e.u.id==a&&e.v.id==b)||(e.u.id==b&&e.v.id==a)) {
+      if (e.u.id==a&&e.v.id==b) {
         toBeRemoved=edges.remove(i);
         break;
       }
@@ -53,7 +52,6 @@ public class WeightedDiGraph extends AbstractGraph {
 
     E--;
     adjList.get(a).remove(toBeRemoved);
-    adjList.get(b).remove(toBeRemoved);
   }
 
   @Override
@@ -166,7 +164,6 @@ public class WeightedDiGraph extends AbstractGraph {
       WeightedDiEdge e = new WeightedDiEdge(vertices.get(a), vertices.get(b), w);
       edges.add(e);
       adjList.get(a).add(e);
-      adjList.get(b).add(e);
     }
   }
 
@@ -193,7 +190,6 @@ public class WeightedDiGraph extends AbstractGraph {
       WeightedDiEdge e = new WeightedDiEdge(vertices.get(a), vertices.get(b), w);
       edges.add(e);
       adjList.get(a).add(e);
-      adjList.get(b).add(e);
     }
   }
 
