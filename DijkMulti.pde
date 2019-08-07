@@ -95,7 +95,7 @@ public class DijkMulti implements Player {
 
   @Override
     boolean hasNextFrame() {
-    return frm<eventQ.size();
+    return frm<=eventQ.size();
   }
 
   @Override
@@ -121,6 +121,11 @@ public class DijkMulti implements Player {
         text(dis, v.loc.x-textWidth(dis)/2, v.loc.y);
       }
     }
+    
+    if(frm==eventQ.size()){
+      noLoop();
+      return;
+    }
 
     if (eventQ.get(frm) instanceof WeightedEdge) {
       ((WeightedEdge)eventQ.get(frm)).display(6, color(250, 0, 0), 150);
@@ -145,5 +150,6 @@ public class DijkMulti implements Player {
 
   @Override
     void terminate() {
+      loop();
   }
 }

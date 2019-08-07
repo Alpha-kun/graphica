@@ -71,7 +71,7 @@ public class DijkSingle implements Player {
 
   @Override
     boolean hasNextFrame() {
-    return frm<eventQ.size();
+    return frm<=eventQ.size();
   }
 
   @Override
@@ -97,6 +97,12 @@ public class DijkSingle implements Player {
         text(dis, v.loc.x-textWidth(dis)/2, v.loc.y);
       }
     }
+    
+    if(frm==eventQ.size()){
+      noLoop();
+      return;
+    }
+    
     if (eventQ.get(frm) instanceof WeightedEdge) {
       ((WeightedEdge)eventQ.get(frm)).display(6, color(0, 250, 0), 150);
       int[] update =relax.removeFirst();
@@ -120,5 +126,6 @@ public class DijkSingle implements Player {
 
   @Override
     void terminate() {
+      loop();
   }
 }
