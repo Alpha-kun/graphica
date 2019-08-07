@@ -15,6 +15,9 @@ public class FileActionListener implements ActionListener {
     case "digraph":
       setupGraph(new DiGraph());
       break;
+    case "wdigraph":
+      setupGraph(new WeightedDiGraph());
+      break;
     case "save":
       saveGraph();
       break;

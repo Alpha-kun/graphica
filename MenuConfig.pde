@@ -6,6 +6,7 @@ Menu menu_new = new Menu("New");
 MenuItem item_graph = new MenuItem("Graph");
 MenuItem item_wgraph = new MenuItem("Weighted Graph");
 MenuItem item_digraph = new MenuItem("Directed Graph");
+MenuItem item_wdigraph = new MenuItem("Weighted DiGraph");
 MenuItem item_open = new MenuItem("Open");
 MenuItem item_save = new MenuItem("Save");
 MenuItem item_import = new MenuItem("Import");
@@ -72,6 +73,7 @@ void setupMenu() {
   menu_new.add(item_graph);
   menu_new.add(item_wgraph);
   menu_new.add(item_digraph);
+  menu_new.add(item_wdigraph);
   menu_export.add(item_image);
   menu_export.add(item_mtx);
 
@@ -88,6 +90,7 @@ void setupMenu() {
   item_graph.setActionCommand("graph");
   item_wgraph.setActionCommand("wgraph");
   item_digraph.setActionCommand("digraph");
+  item_wdigraph.setActionCommand("wdigraph");
   item_open.setActionCommand("open");
   item_save.setActionCommand("save");
   item_import.setActionCommand("import");
@@ -97,6 +100,7 @@ void setupMenu() {
   item_graph.addActionListener(fal);
   item_wgraph.addActionListener(fal);
   item_digraph.addActionListener(fal);
+  item_wdigraph.addActionListener(fal);
   item_open.addActionListener(fal);
   item_save.addActionListener(fal);
   item_import.addActionListener(fal);
@@ -264,4 +268,8 @@ void setupDG(boolean b) {
   menu_mst.setEnabled(b);
   menu_sp.setEnabled(b);
   item_toPL.setEnabled(b);
+}
+
+void setupWD(boolean b) {
+  menu_mst.setEnabled(b);
 }
