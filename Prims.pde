@@ -14,12 +14,11 @@ public class Prims implements Player {
         return Integer.compare(e1.weight, e2.weight);
       }
     };
-    
-    
+
+
     q = new PriorityQueue(cpt);
-    
-    prim(takeInput("please select source vertex",0,0,grf.N));
-    
+
+    prim(takeInput("please select source vertex", 0, 0, grf.N));
   }
 
 
@@ -53,7 +52,7 @@ public class Prims implements Player {
   int frm;
   @Override
     boolean hasNextFrame() {
-    return frm<mst_edge.size();
+    return frm<=mst_edge.size();
   }
 
   @Override
@@ -67,14 +66,16 @@ public class Prims implements Player {
       mst_edge.get(i).u.display(20, color(250, 250, 250), 100);
       mst_edge.get(i).v.display(20, color(250, 250, 250), 100);
     }
-
-    mst_edge.get(frm).display(6, color(250, 0, 0), 150);
-
+    if (frm<mst_edge.size())
+      mst_edge.get(frm).display(6, color(250, 0, 0), 150);
+    else
+      noLoop();
     frm++;
     sleep(550-50*animation_speed);
   }
 
   @Override
     void terminate() {
+    loop();
   }
 }

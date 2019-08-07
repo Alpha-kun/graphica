@@ -124,8 +124,10 @@ void keyPressed() {
   println(Thread.currentThread().getName());
   switch(key) {
   case 'a':
-    algoPlayer.terminate();
-    algoPlayer=null;
+    if (algoPlayer!=null) {
+      algoPlayer.terminate();
+      algoPlayer=null;
+    }
     break;
   case 'v':
     println("switch to vertex mode");
